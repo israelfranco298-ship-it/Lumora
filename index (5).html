@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMORA · Zayre &amp; Abraham</title>
+<meta name="description" content="LUMORA Photo Studio — encuentra tu retrato del evento.">
+
+<!-- Tipografías: serif editorial para display, sans para interfaz -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--
+  ============================================================
+  ESTRUCTURA DE DATOS DEL EVENTO
+  ------------------------------------------------------------
+  En esta versión estática, los datos del evento (nombres,
+  fecha, código base, ruta de fotografías) están escritos
+  directamente en el HTML y en script.js (objeto EVENT_DATA).
+
+  Cuando se conecte a un backend / Google Sheets / API, este
+  bloque debería generarse dinámicamente a partir del slug del
+  evento (ej. /event/zayre-abraham/), por ejemplo mediante:
+    - una llamada fetch() a una API o a n8n (webhook) que
+      devuelva el JSON del evento, o
+    - un archivo de datos por evento (event.json) leído al
+      cargar la página.
+  Ver comentarios equivalentes en script.js.
+  ============================================================
+-->
+
+<div class="grain" aria-hidden="true"></div>
+
+<main class="stage" data-current="search">
+
+  <!-- ============ PANTALLA 1 — BÚSQUEDA DE CÓDIGO ============ -->
+  <section id="screen-search" class="screen screen--search" aria-hidden="false">
+
+    <header class="brand">
+      <p class="brand__mark">LUMORA</p>
+      <p class="brand__sub">Photo Studio</p>
+    </header>
+
+    <div class="event">
+      <h1 class="event__names">Zayre <span class="event__amp">&amp;</span> Abraham</h1>
+      <p class="event__date">28 · 02 · 2027</p>
+    </div>
+
+    <p class="tagline">Your moment, captured.</p>
+
+    <div class="finder">
+      <p class="finder__label">Find your portrait</p>
+
+      <form id="lookup-form" class="finder__form" autocomplete="off" novalidate>
+        <label for="code-input" class="sr-only">Código de invitado</label>
+        <input
+          id="code-input"
+          class="finder__input"
+          type="text"
+          inputmode="text"
+          placeholder="IF · 027"
+          maxlength="12"
+          aria-describedby="code-error"
+        >
+        <button type="submit" class="finder__submit">
+          View my photos <span class="arrow" aria-hidden="true">→</span>
+        </button>
+      </form>
+
+      <p id="code-error" class="finder__error" role="alert" aria-live="polite"></p>
+    </div>
+
+  </section>
+
+  <!-- ============ PANTALLA 2 — RETRATO DEL INVITADO ============ -->
+  <section id="screen-portrait" class="screen screen--portrait" aria-hidden="true">
+
+    <header class="brand brand--compact">
+      <p class="brand__mark">LUMORA</p>
+      <p class="brand__sub">Photo Studio</p>
+    </header>
+
+    <p class="portrait__eyebrow">Your portrait</p>
+    <p class="portrait__code" id="portrait-code">IF · 027</p>
+
+    <figure class="portrait__frame">
+      <!--
+        La ruta de la imagen se resuelve dinámicamente en script.js
+        a partir del código (ej. IF-027 -> assets/photos/IF-027-01.jpg).
+        Ver la constante PHOTO_BASE_PATH / getPhotoPath() en script.js
+        para el punto de conexión futuro con almacenamiento externo
+        (S3, Google Drive, Cloudinary, etc.).
+      -->
+      <img id="portrait-image" src="" alt="" class="portrait__image">
+    </figure>
+
+    <button id="download-btn" class="portrait__download" type="button">
+      Download portrait
+    </button>
+
+    <button id="back-btn" class="portrait__back" type="button">
+      ← Search another code
+    </button>
+
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
