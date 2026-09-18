@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LUMORA · Galería</title>
+
+<meta
+  name="description"
+  content="LUMORA Photo Studio — galería privada del evento."
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap"
+  rel="stylesheet"
+>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<main class="stage" data-current="search">
+
+  <!-- =====================================================
+       PANTALLA DE BÚSQUEDA
+       ===================================================== -->
+
+  <section
+    id="screen-search"
+    class="screen screen--search"
+    aria-hidden="false"
+  >
+
+    <header class="brand">
+
+      <p class="brand__mark">
+        LUMORA
+      </p>
+
+      <p class="brand__sub">
+        Photo Studio
+      </p>
+
+    </header>
+
+
+    <div class="event">
+
+      <h1
+        id="event-name"
+        class="event__names"
+      >
+        Cargando...
+      </h1>
+
+      <p
+        id="event-date"
+        class="event__date"
+      ></p>
+
+    </div>
+
+
+    <p class="tagline">
+      Your moment, captured.
+    </p>
+
+
+    <div class="finder">
+
+      <p class="finder__label">
+        Find your portrait
+      </p>
+
+
+      <form
+        id="lookup-form"
+        class="finder__form"
+        autocomplete="off"
+        novalidate
+      >
+
+        <label
+          for="code-input"
+          class="sr-only"
+        >
+          Código de fotografía
+        </label>
+
+
+        <input
+          id="code-input"
+          class="finder__input"
+          type="text"
+          inputmode="text"
+          placeholder="IF · 027"
+          maxlength="20"
+          aria-describedby="code-error"
+        >
+
+
+        <button
+          type="submit"
+          class="finder__submit"
+        >
+          View my photos
+
+          <span
+            class="arrow"
+            aria-hidden="true"
+          >
+            →
+          </span>
+
+        </button>
+
+      </form>
+
+
+      <p
+        id="code-error"
+        class="finder__error"
+        role="alert"
+        aria-live="polite"
+      ></p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       PANTALLA DE FOTOGRAFÍA
+       ===================================================== -->
+
+  <section
+    id="screen-portrait"
+    class="screen screen--portrait"
+    aria-hidden="true"
+  >
+
+    <header class="brand brand--compact">
+
+      <p class="brand__mark">
+        LUMORA
+      </p>
+
+      <p class="brand__sub">
+        Photo Studio
+      </p>
+
+    </header>
+
+
+    <p class="portrait__eyebrow">
+      Your portrait
+    </p>
+
+
+    <p
+      class="portrait__code"
+      id="portrait-code"
+    ></p>
+
+
+    <figure class="portrait__frame">
+
+      <img
+        id="portrait-image"
+        src=""
+        alt=""
+        class="portrait__image"
+      >
+
+    </figure>
+
+
+    <button
+      id="download-btn"
+      class="portrait__download"
+      type="button"
+    >
+      Download portrait
+    </button>
+
+
+    <button
+      id="back-btn"
+      class="portrait__back"
+      type="button"
+    >
+      ← Search another code
+    </button>
+
+  </section>
+
+</main>
+
+
+<script src="evento.js"></script>
+
+</body>
+</html>
