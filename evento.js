@@ -175,11 +175,11 @@ console.log("LUMORA · Evento desde Supabase:", {
      ========================================================== */
 
   eventName.textContent =
-    eventData.names;
+    eventData.name;
 
 
   const formattedDate =
-    new Date(eventData.date + "T00:00:00")
+    new Date(eventData.event_date + "T00:00:00")
       .toLocaleDateString("es-MX", {
         day: "2-digit",
         month: "2-digit",
