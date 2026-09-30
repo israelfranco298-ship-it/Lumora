@@ -89,15 +89,25 @@
      ========================================================== */
 
   const params = new URLSearchParams(
-    window.location.search
-  );
+  window.location.search
+);
 
-  const eventId =
-    params.get("event") || "zayre-abraham";
+const eventId =
+  params.get("event") || "zayre-abraham";
 
 
-  const eventData =
-    EVENTS[eventId];
+const { data: eventData, error: eventError } =
+  await supabaseClient
+    .from("events")
+    .select("*")
+    .eq("slug", eventId)
+    .eq("active", true)
+    .single();
+
+console.log("LUMORA · Evento desde Supabase:", {
+  eventData,
+  eventError
+});
 
 
   /* ==========================================================
