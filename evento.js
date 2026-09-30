@@ -1,6 +1,21 @@
 (function () {
   "use strict";
 
+    /* ==========================================================
+     CONEXIÓN SUPABASE
+     ========================================================== */
+
+  const SUPABASE_URL =
+    "https://jecivelaszqrqmlfxcqu.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_1cKKhjZK9GOAsuwFThbFBA_KWERbC-3";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
 
   /* ==========================================================
      1. EVENTOS DE PRUEBA
