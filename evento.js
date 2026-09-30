@@ -17,6 +17,27 @@
       SUPABASE_KEY
     );
 
+    /* ==========================================================
+     PRUEBA DE CONEXIÓN SUPABASE
+     ========================================================== */
+
+  async function testSupabase() {
+
+    const { data, error } =
+      await supabaseClient
+        .from("events")
+        .select("*")
+        .limit(1);
+
+    console.log("LUMORA · Supabase:", {
+      data,
+      error
+    });
+
+  }
+
+  testSupabase();
+  
   /* ==========================================================
      1. EVENTOS DE PRUEBA
      ========================================================== */
