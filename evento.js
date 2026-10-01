@@ -345,34 +345,34 @@ console.log("LUMORA · Evento desde Supabase:", {
      9. FORMULARIO
      ========================================================== */
 
-  form.addEventListener(
-    "submit",
-    function (event) {
+ form.addEventListener(
+  "submit",
+  async function (event) {
 
-      event.preventDefault();
+    event.preventDefault();
 
+
+    errorEl.textContent =
+      "";
+
+
+    const photo =
+      await findPhoto(input.value);
+
+
+    if (!photo) {
 
       errorEl.textContent =
-        "";
+        "We couldn't find a portrait with that code.";
 
-
-      const photo =
-        findPhoto(input.value);
-
-
-      if (!photo) {
-
-        errorEl.textContent =
-          "We couldn't find a portrait with that code.";
-
-        return;
-      }
-
-
-      showPhoto(photo);
-
+      return;
     }
-  );
+
+
+    showPhoto(photo);
+
+  }
+);
 
 
   /* ==========================================================
