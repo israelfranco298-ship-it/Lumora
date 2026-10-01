@@ -213,31 +213,70 @@ console.log("LUMORA · Evento desde Supabase:", {
      7. BUSCAR FOTOGRAFÍA
      ========================================================== */
 
-  function findPhoto(code) {
+  async function findPhoto(code) {
 
-    const normalized =
-      normalizeCode(code);
-
-
-    const photos =
-      eventData.photos;
+  const normalized =
+    normalizeCode(code);
 
 
-    for (const key in photos) {
+  if (!normalized) {
+    return null;
+  }
 
-      if (
-        normalizeCode(key) === normalized
-      ) {
 
-        return photos[key];
+  const { data, error } =
+    await supabaseClient
+      .from("photos")
+      .select("*")
+      .eq("event_id", eventData.id);
 
-      }
 
-    }
+  console.log("LUMORA · Fotos del evento:", {
+    data,
+    error
+  });
 
+
+  if (error) {
+
+    console.error(
+      "LUMORA · Error buscando fotos:",
+      error
+    );
 
     return null;
   }
+
+
+  const photo =
+    data.find(function (item) {
+
+      return (
+        normalizeCode(item.code) ===
+        normalized
+      );
+
+    });
+
+
+  if (!photo) {
+    return null;
+  }
+
+
+  return {
+
+    code: photo.code,
+
+    file: photo.image_url,
+
+    thumbnail: photo.thumbnail_url,
+
+    filename: photo.filename
+
+  };
+
+}
 
 
   /* ==========================================================
