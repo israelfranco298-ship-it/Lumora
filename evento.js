@@ -345,36 +345,34 @@ console.log("LUMORA · Evento desde Supabase:", {
      9. FORMULARIO
      ========================================================== */
 
- form.addEventListener(
+form.addEventListener(
   "submit",
   async function (event) {
 
     event.preventDefault();
 
+    errorEl.textContent = "";
 
-    errorEl.textContent =
-      "";
+    const code = input.value.trim().toUpperCase();
 
-
-    const photo =
-      await findPhoto(input.value);
-
-
-    if (!photo) {
-
+    if (!/^IF-\d{3}$/.test(code)) {
       errorEl.textContent =
-        "We couldn't find a portrait with that code.";
-
+        "Código de fotografía no válido.";
       return;
     }
 
+    const photo = await findPhoto(code);
+
+    if (!photo) {
+      errorEl.textContent =
+        "We couldn't find a portrait with that code.";
+      return;
+    }
 
     showPhoto(photo);
 
   }
 );
-
-
   /* ==========================================================
      10. REGRESAR
      ========================================================== */
